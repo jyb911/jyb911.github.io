@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>加载解析过程 | Jay&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/codecat.jpeg">
+    <meta name="description" content="贾一倍的个人网站">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.9741ee45.js" as="script"><link rel="preload" href="/assets/js/2.38414016.js" as="script"><link rel="preload" href="/assets/js/34.6241d8fe.js" as="script"><link rel="prefetch" href="/assets/js/10.e987d393.js"><link rel="prefetch" href="/assets/js/11.101c2558.js"><link rel="prefetch" href="/assets/js/12.b7d2fcad.js"><link rel="prefetch" href="/assets/js/13.1fc1541c.js"><link rel="prefetch" href="/assets/js/14.19d6662b.js"><link rel="prefetch" href="/assets/js/15.17566944.js"><link rel="prefetch" href="/assets/js/16.db8bf30c.js"><link rel="prefetch" href="/assets/js/17.aac2eb21.js"><link rel="prefetch" href="/assets/js/18.31441753.js"><link rel="prefetch" href="/assets/js/19.3f49c45b.js"><link rel="prefetch" href="/assets/js/20.486572ac.js"><link rel="prefetch" href="/assets/js/21.0ca3b0c6.js"><link rel="prefetch" href="/assets/js/22.af3d3841.js"><link rel="prefetch" href="/assets/js/23.f26ea8fb.js"><link rel="prefetch" href="/assets/js/24.b156d42b.js"><link rel="prefetch" href="/assets/js/25.9f3661c1.js"><link rel="prefetch" href="/assets/js/26.fe43527f.js"><link rel="prefetch" href="/assets/js/27.7a852abe.js"><link rel="prefetch" href="/assets/js/28.9320f043.js"><link rel="prefetch" href="/assets/js/29.c19a2a11.js"><link rel="prefetch" href="/assets/js/3.42c55640.js"><link rel="prefetch" href="/assets/js/30.d160f0f0.js"><link rel="prefetch" href="/assets/js/31.fa3f077d.js"><link rel="prefetch" href="/assets/js/32.f87b156b.js"><link rel="prefetch" href="/assets/js/33.2f1a2a2d.js"><link rel="prefetch" href="/assets/js/35.81e9c281.js"><link rel="prefetch" href="/assets/js/36.8fe73ecf.js"><link rel="prefetch" href="/assets/js/37.36490112.js"><link rel="prefetch" href="/assets/js/38.b259fb0a.js"><link rel="prefetch" href="/assets/js/39.c5b14c76.js"><link rel="prefetch" href="/assets/js/4.c1d444a8.js"><link rel="prefetch" href="/assets/js/40.55a5b585.js"><link rel="prefetch" href="/assets/js/41.1577df2c.js"><link rel="prefetch" href="/assets/js/42.6cd3296e.js"><link rel="prefetch" href="/assets/js/43.68a8a679.js"><link rel="prefetch" href="/assets/js/44.e00aba30.js"><link rel="prefetch" href="/assets/js/5.0283b03f.js"><link rel="prefetch" href="/assets/js/6.01c50586.js"><link rel="prefetch" href="/assets/js/7.c7625e6b.js"><link rel="prefetch" href="/assets/js/8.80450da7.js"><link rel="prefetch" href="/assets/js/9.88a8d6fb.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Jay's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/accumulate/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><a href="/framework/" class="nav-link">
+  框架
+</a></div><div class="nav-item"><a href="/algorithm/" class="nav-link">
+  算法题库
+</a></div><div class="nav-item"><a href="/browser/" class="nav-link router-link-active">
+  浏览器
+</a></div><div class="nav-item"><a href="/network/" class="nav-link">
+  计算机网络
+</a></div><div class="nav-item"><a href="/optimize/" class="nav-link">
+  优化
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/accumulate/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><a href="/framework/" class="nav-link">
+  框架
+</a></div><div class="nav-item"><a href="/algorithm/" class="nav-link">
+  算法题库
+</a></div><div class="nav-item"><a href="/browser/" class="nav-link router-link-active">
+  浏览器
+</a></div><div class="nav-item"><a href="/network/" class="nav-link">
+  计算机网络
+</a></div><div class="nav-item"><a href="/optimize/" class="nav-link">
+  优化
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/browser/" aria-current="page" class="sidebar-link">浏览器相关</a></li><li><a href="/browser/ServiceWorker.html" class="sidebar-link">ServiceWorker</a></li><li><a href="/browser/缓存.html" class="sidebar-link">缓存</a></li><li><a href="/browser/htmlcssjs加载顺序.html" class="active sidebar-link">htmlcssjs加载顺序</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/browser/htmlcssjs加载顺序.html#加载解析过程" class="sidebar-link">加载解析过程</a></li><li class="sidebar-sub-header"><a href="/browser/htmlcssjs加载顺序.html#defer-和-async属性" class="sidebar-link">defer 和 async属性</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="加载解析过程"><a href="#加载解析过程" class="header-anchor">#</a> 加载解析过程</h2> <ul><li><p>最开始一边加载html，一边按从上到下进行解析，解析到head标签，</p></li> <li><p>如果先遇到script，<strong>暂停对html 的解析</strong>，如果script引用外部脚本，就下载该脚本，否则立即执行，js加载和执行过程中不会阻塞后面内容的加载但阻塞解析，</p></li> <li><p>如果先遇到外联css，css进行加载并解析过程中，html继续解析，script脚本继续加载，但不能执行，css加载解析完成后，js开始执行，暂停对html的解析，js执行完成后，html继续解析</p></li></ul> <h2 id="defer-和-async属性"><a href="#defer-和-async属性" class="header-anchor">#</a> defer 和 async属性</h2> <ul><li><p>外联js含有defer属性，会并行加载js，等到页面全部加载解析完成后才会执行</p></li> <li><p>外联js如果含有async属性，将不会依赖任何js和css 的执行，下载完成后立即执行，不保证按顺序执行，先下载完成就先执行。因为async属性相当于告诉浏览器，js不会修改dom和css，所以不需要依赖其他的js和css</p></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/browser/缓存.html" class="prev">
+        缓存
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.9741ee45.js" defer></script><script src="/assets/js/2.38414016.js" defer></script><script src="/assets/js/34.6241d8fe.js" defer></script>
+  </body>
+</html>
