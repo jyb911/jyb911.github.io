@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue中的$nextTick | Jay&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/codecat.jpeg">
+    <meta name="description" content="贾一倍的个人网站">
+    
+    <link rel="preload" href="/assets/css/0.styles.35bcedcf.css" as="style"><link rel="preload" href="/assets/js/app.ffeb74c7.js" as="script"><link rel="preload" href="/assets/js/2.8c000b42.js" as="script"><link rel="preload" href="/assets/js/78.d13a2495.js" as="script"><link rel="prefetch" href="/assets/js/10.d264db59.js"><link rel="prefetch" href="/assets/js/11.0bca9d9a.js"><link rel="prefetch" href="/assets/js/12.4f250ebe.js"><link rel="prefetch" href="/assets/js/13.e66cb20f.js"><link rel="prefetch" href="/assets/js/14.e9740e5f.js"><link rel="prefetch" href="/assets/js/15.77f24c1c.js"><link rel="prefetch" href="/assets/js/16.81145a00.js"><link rel="prefetch" href="/assets/js/17.fecbbc6a.js"><link rel="prefetch" href="/assets/js/18.fa64136a.js"><link rel="prefetch" href="/assets/js/19.0bf73149.js"><link rel="prefetch" href="/assets/js/20.ecf66ee0.js"><link rel="prefetch" href="/assets/js/21.9b56c347.js"><link rel="prefetch" href="/assets/js/22.eba330b8.js"><link rel="prefetch" href="/assets/js/23.cdfc8136.js"><link rel="prefetch" href="/assets/js/24.ecbff0b4.js"><link rel="prefetch" href="/assets/js/25.a765f52f.js"><link rel="prefetch" href="/assets/js/26.1df3f3be.js"><link rel="prefetch" href="/assets/js/27.6d559f57.js"><link rel="prefetch" href="/assets/js/28.44d0a27d.js"><link rel="prefetch" href="/assets/js/29.0db53b84.js"><link rel="prefetch" href="/assets/js/3.593bb0f3.js"><link rel="prefetch" href="/assets/js/30.ecd999ba.js"><link rel="prefetch" href="/assets/js/31.52600e5f.js"><link rel="prefetch" href="/assets/js/32.32943b2d.js"><link rel="prefetch" href="/assets/js/33.362f4d59.js"><link rel="prefetch" href="/assets/js/34.d0944a8e.js"><link rel="prefetch" href="/assets/js/35.bf1908ad.js"><link rel="prefetch" href="/assets/js/36.2d9be9dc.js"><link rel="prefetch" href="/assets/js/37.3358ac3c.js"><link rel="prefetch" href="/assets/js/38.bae9ecf2.js"><link rel="prefetch" href="/assets/js/39.dfcb747a.js"><link rel="prefetch" href="/assets/js/4.01f7dd6c.js"><link rel="prefetch" href="/assets/js/40.dbf6c454.js"><link rel="prefetch" href="/assets/js/41.a517905d.js"><link rel="prefetch" href="/assets/js/42.e1ae6c7e.js"><link rel="prefetch" href="/assets/js/43.c20697cd.js"><link rel="prefetch" href="/assets/js/44.d5c401fa.js"><link rel="prefetch" href="/assets/js/45.810ad2fb.js"><link rel="prefetch" href="/assets/js/46.cfe99c5e.js"><link rel="prefetch" href="/assets/js/47.32a6c154.js"><link rel="prefetch" href="/assets/js/48.be512d65.js"><link rel="prefetch" href="/assets/js/49.d36d3e6d.js"><link rel="prefetch" href="/assets/js/5.eb23ea04.js"><link rel="prefetch" href="/assets/js/50.4312a7d3.js"><link rel="prefetch" href="/assets/js/51.8db2277f.js"><link rel="prefetch" href="/assets/js/52.0ae05eb4.js"><link rel="prefetch" href="/assets/js/53.e61fc25e.js"><link rel="prefetch" href="/assets/js/54.0f5b381c.js"><link rel="prefetch" href="/assets/js/55.c7beb55c.js"><link rel="prefetch" href="/assets/js/56.97fa88fd.js"><link rel="prefetch" href="/assets/js/57.1e086f28.js"><link rel="prefetch" href="/assets/js/58.97111a0a.js"><link rel="prefetch" href="/assets/js/59.8865259a.js"><link rel="prefetch" href="/assets/js/6.516e3b20.js"><link rel="prefetch" href="/assets/js/60.0541b26f.js"><link rel="prefetch" href="/assets/js/61.624fbdfa.js"><link rel="prefetch" href="/assets/js/62.e71bbf4a.js"><link rel="prefetch" href="/assets/js/63.ad78749d.js"><link rel="prefetch" href="/assets/js/64.931d419d.js"><link rel="prefetch" href="/assets/js/65.b46213b4.js"><link rel="prefetch" href="/assets/js/66.92c8d024.js"><link rel="prefetch" href="/assets/js/67.c63280ef.js"><link rel="prefetch" href="/assets/js/68.16012c5b.js"><link rel="prefetch" href="/assets/js/69.b4a8ea96.js"><link rel="prefetch" href="/assets/js/7.c7625e6b.js"><link rel="prefetch" href="/assets/js/70.c03c3735.js"><link rel="prefetch" href="/assets/js/71.76491655.js"><link rel="prefetch" href="/assets/js/72.ab24e160.js"><link rel="prefetch" href="/assets/js/73.9026af07.js"><link rel="prefetch" href="/assets/js/74.8f925ea4.js"><link rel="prefetch" href="/assets/js/75.8c3d4d08.js"><link rel="prefetch" href="/assets/js/76.2e25789c.js"><link rel="prefetch" href="/assets/js/77.bc9764be.js"><link rel="prefetch" href="/assets/js/8.80450da7.js"><link rel="prefetch" href="/assets/js/9.dd8d6c7c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.35bcedcf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Jay's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/accumulate/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><a href="/stack/" class="nav-link router-link-active">
+  技术栈
+</a></div><div class="nav-item"><a href="/algorithm/" class="nav-link">
+  算法题库
+</a></div><div class="nav-item"><a href="/browser/" class="nav-link">
+  浏览器
+</a></div><div class="nav-item"><a href="/network/" class="nav-link">
+  计算机网络
+</a></div><div class="nav-item"><a href="/optimize/" class="nav-link">
+  优化
+</a></div><div class="nav-item"><a href="/c++/" class="nav-link">
+  c++
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/accumulate/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><a href="/stack/" class="nav-link router-link-active">
+  技术栈
+</a></div><div class="nav-item"><a href="/algorithm/" class="nav-link">
+  算法题库
+</a></div><div class="nav-item"><a href="/browser/" class="nav-link">
+  浏览器
+</a></div><div class="nav-item"><a href="/network/" class="nav-link">
+  计算机网络
+</a></div><div class="nav-item"><a href="/optimize/" class="nav-link">
+  优化
+</a></div><div class="nav-item"><a href="/c++/" class="nav-link">
+  c++
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Stack</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/stack/" aria-current="page" class="sidebar-link">框架</a></li><li><a href="/stack/Axios.html" class="sidebar-link">主要功能</a></li><li><a href="/stack/Vue.html" class="sidebar-link">Vue双向绑定</a></li><li><a href="/stack/Vuex.html" class="sidebar-link">vuex</a></li><li><a href="/stack/Vue双向绑定及其原理.html" class="sidebar-link">/stack/Vue双向绑定及其原理.html</a></li><li><a href="/stack/diff算法.html" class="sidebar-link">前言</a></li><li><a href="/stack/react.html" class="sidebar-link">2022/6/2</a></li><li><a href="/stack/vue-router.html" class="sidebar-link">vue-router</a></li><li><a href="/stack/vue组件通信.html" class="sidebar-link">props/$emit</a></li><li><a href="/stack/异步更新和nextTick.html" class="active sidebar-link">vue中的$nextTick</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/stack/异步更新和nextTick.html#vue中的-nexttick" class="sidebar-link">vue中的$nextTick</a></li><li class="sidebar-sub-header"><a href="/stack/异步更新和nextTick.html#异步更新" class="sidebar-link">异步更新</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="vue中的-nexttick"><a href="#vue中的-nexttick" class="header-anchor">#</a> <strong>vue中的$nextTick</strong></h2> <ul><li>只执行一次</li></ul> <p>在<strong>下次 DOM 更新循环结束之后</strong>执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。</p> <p>Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新。$nextTick 是在下次 DOM 更新循环结束之后执行延迟回调，在修改数据之后使用 $nextTick，则可以在回调中获取更新后的 DOM</p> <hr> <h2 id="异步更新"><a href="#异步更新" class="header-anchor">#</a> 异步更新</h2> <ul><li><p>首先，oberver通过Object.defineProperty对data中的属性进行数据劫持，通过getter和setter可以监测数据变化</p></li> <li><p>每一个data属性会创建一个dep数组，用来收集所有使用到这个属性的watcher</p></li> <li><p>compile函数初始化视图，给含有变量的模板指令对应的节点绑定更新函数，watcher实例初始化时向dep数组添加自己</p></li> <li><p>当数据发生改变，observer通知dep，dep.notify通知和这个数据有关的watcher，然后dep遍历所有相关watcher执行update方法更新</p></li> <li><p>而这里watcher的更新是异步的，因为update函数里又调用了queueWatcher，负责将需要更新的watcher加入到队列里，然后把具体的更新方法flushSchedulerQueue传给nextTick进行调用</p></li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 当一个 Data 更新时，会依次执行以下代码 </span>
+<span class="token comment">// 1. 触发 Data.set </span>
+<span class="token comment">// 2. 调用 dep.notify </span>
+<span class="token comment">// 3. Dep 会遍历所有相关的 Watcher 执行 update 方法 </span>
+<span class="token keyword">class</span> <span class="token class-name">Watcher</span> <span class="token punctuation">{</span> 
+  <span class="token comment">// 4. 执行更新操作 </span>
+  <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token function">queueWatcher</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+ 
+<span class="token keyword">const</span> queue <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+ 
+<span class="token keyword">function</span> <span class="token function">queueWatcher</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">watcher</span><span class="token operator">:</span> Watcher</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+  <span class="token comment">// 5. 将当前 Watcher 添加到异步队列 </span>
+  queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>watcher<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token comment">// 6. 执行异步队列，并传入回调 </span>
+  <span class="token function">nextTick</span><span class="token punctuation">(</span>flushSchedulerQueue<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> 
+ 
+<span class="token comment">// 更新视图的具体方法 </span>
+<span class="token keyword">function</span> <span class="token function">flushSchedulerQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+  <span class="token keyword">let</span> watcher<span class="token punctuation">,</span> id<span class="token punctuation">;</span> 
+  <span class="token comment">// 排序，先渲染父节点，再渲染子节点 </span>
+  <span class="token comment">// 这样可以避免不必要的子节点渲染，如：父节点中 v-if 为 false 的子节点，就不用渲染了 </span>
+  queue<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>id <span class="token operator">-</span> b<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token comment">// 遍历所有 Watcher 进行批量更新。 </span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token parameter">index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> index <span class="token operator">&lt;</span> queue<span class="token punctuation">.</span>length<span class="token punctuation">;</span> index<span class="token operator">++</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    watcher <span class="token operator">=</span> queue<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">;</span> 
+    <span class="token comment">// 更新 DOM </span>
+    watcher<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+
+<span class="token comment">// nextTick函数</span>
+<span class="token keyword">const</span> callbacks <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+<span class="token keyword">let</span> timerFunc<span class="token punctuation">;</span> 
+ 
+<span class="token keyword">function</span> <span class="token function">nextTick</span><span class="token punctuation">(</span><span class="token parameter">cb<span class="token operator">?</span><span class="token operator">:</span> Function<span class="token punctuation">,</span> ctx<span class="token operator">?</span><span class="token operator">:</span> Object</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+  <span class="token keyword">let</span> _resolve<span class="token punctuation">;</span> 
+  <span class="token comment">// 1.将传入的 flushSchedulerQueue 方法添加到回调数组 </span>
+  callbacks<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
+    <span class="token function">cb</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token comment">// 2.执行异步任务 </span>
+  <span class="token comment">// 此方法会根据浏览器兼容性，选用不同的异步策略 </span>
+  <span class="token function">timerFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> 
+
+
+</code></pre></div><p>而nextTick函数则将传入的flushSchedulerQueue添加到callbacks数组中，然后执行timeFunc函数，timeFunc函数是根据浏览器的兼容性创建的一个异步方法，它执行完成后，会调用flushSchedulerQueue进行具体的更新</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> timerFunc<span class="token punctuation">;</span> 
+<span class="token comment">// 判断是否兼容 Promise </span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> Promise <span class="token operator">!==</span> <span class="token string">&quot;undefined&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+  <span class="token function-variable function">timerFunc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
+    Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>flushCallbacks<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span><span class="token punctuation">;</span> 
+  <span class="token comment">// 判断是否兼容 MutationObserver </span>
+  <span class="token comment">// https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver </span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> MutationObserver <span class="token operator">!==</span> <span class="token string">&quot;undefined&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+  <span class="token keyword">let</span> counter <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> 
+  <span class="token keyword">const</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span>flushCallbacks<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token keyword">const</span> textNode <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createTextNode</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>textNode<span class="token punctuation">,</span> <span class="token punctuation">{</span> 
+    characterData<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> 
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token function-variable function">timerFunc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
+    counter <span class="token operator">=</span> <span class="token punctuation">(</span>counter <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">2</span><span class="token punctuation">;</span> 
+    textNode<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span><span class="token punctuation">;</span> 
+  <span class="token comment">// 判断是否兼容 setImmediate </span>
+  <span class="token comment">// 该方法存在一些 IE 浏览器中 </span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> setImmediate <span class="token operator">!==</span> <span class="token string">&quot;undefined&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+  <span class="token comment">// 这是一个宏任务，但相比 setTimeout 要更好 </span>
+  <span class="token function-variable function">timerFunc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
+    <span class="token function">setImmediate</span><span class="token punctuation">(</span>flushCallbacks<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> 
+  <span class="token comment">// 如果以上方法都不知道，使用 setTimeout 0 </span>
+  <span class="token function-variable function">timerFunc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span>flushCallbacks<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> 
+ 
+<span class="token comment">// 异步执行完后，执行所有的回调方法，也就是执行 flushSchedulerQueue </span>
+<span class="token keyword">function</span> <span class="token function">flushCallbacks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> copies<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    callbacks<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span> 
+
+</code></pre></div><p><a href="https://imgtu.com/i/vZwGtJ" target="_blank" rel="noopener noreferrer"><img src="https://s1.ax1x.com/2022/08/03/vZwGtJ.png" alt="vZwGtJ.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <ul><li>判断 has 标识（在queueWatcher内），避免在一个 Queue 中添加相同的 Watcher。</li> <li>判断 waiting 标识（在queueWatcher内），让所有的 Watcher 都在一个 tick 内进行更新。</li> <li>判断 flushing 标识（在flushSchedulerQueue内），处理 Watcher 渲染时，可能产生的新 Watcher。</li></ul> <p><strong>上面的代码不全，以下为较完整的版本</strong></p> <div class="language-js extra-class"><pre class="language-js"><code> <span class="token comment">// queueWatcher函数</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">queueWatcher</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">watcher</span><span class="token operator">:</span> Watcher</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 拿到 watcher 的唯一标识</span>
+    <span class="token keyword">const</span> id <span class="token operator">=</span> watcher<span class="token punctuation">.</span>id
+    <span class="token comment">// 无论有多少数据更新，相同的 watcher 只被压入一次</span>
+    <span class="token comment">// 我理解这就是为什么在一次操作中，多次更改了变量的值，但是只进行了一次页面更新的原因，</span>
+    <span class="token comment">// 同一变量 依赖它的 watcher 是一定的，所以已经存在了就不再放进watcher 队列中了，也不会走后面的逻辑</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>has<span class="token punctuation">[</span>id<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 缓存当前的watcher的标识,用于判断是否重复</span>
+        has<span class="token punctuation">[</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span>
+        <span class="token comment">// 如果当前不是刷新状态,直接入队</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>flushing<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>watcher<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// if already flushing, splice the watcher based on its id</span>
+        <span class="token comment">// if already past its id, it will be run next immediately.</span>
+        <span class="token comment">// 此处能走到这儿，说明 flushSchedulerQueue 函数被执行了 watcher队列已经正在开始被更新了, </span>
+        <span class="token comment">// 并且 在执行某个watcher.run方法的时候又触发的数据响应式更新，重新触发了 queueWatcher</span>
+        <span class="token comment">// 因为在执行的时候回有一个给 watcher 排序的操作，所以，当 watcher 正在更新时已经是排好顺序了的，此时需要插入到特定		的位置，保持 watcher 队列依然是保持顺序的</span>
+            <span class="token keyword">let</span> i <span class="token operator">=</span> queue<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&gt;</span> index <span class="token operator">&amp;&amp;</span> queue<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>id <span class="token operator">&gt;</span> watcher<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                i<span class="token operator">--</span>
+            <span class="token punctuation">}</span>
+            queue<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> watcher<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// queue the flush</span>
+        <span class="token comment">// waiting 表示当前的 flushSchedulerQueue 还没有被执行，因为还没有重置状态， waiting 仍然 为 true</span>
+        <span class="token comment">// 所以 waiting 的意义就是 表明是否执行了flushSchedulerQueue,</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>waiting<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            waiting <span class="token operator">=</span> <span class="token boolean">true</span>
+        <span class="token comment">// 直接同步刷新队列</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">!==</span> <span class="token string">'production'</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>config<span class="token punctuation">.</span>async<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 同步执行</span>
+                <span class="token function">flushSchedulerQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span>
+            <span class="token punctuation">}</span>
+        <span class="token comment">// 把更新队列函数放到异步队列中</span>
+            <span class="token function">nextTick</span><span class="token punctuation">(</span>flushSchedulerQueue<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// flushSchedulerQueue函数</span>
+<span class="token keyword">function</span> <span class="token function">flushSchedulerQueue</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 当方法被执行时，设置为正在刷新状态，以示可以继续执行 nextTick 方法</span>
+    flushing <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token comment">// 把队列中的 watcher 排个序，</span>
+    <span class="token comment">/**
+    * 排序的作用：（此句照搬照抄而来）
+    * 1. 保证父组件的watcher比子组件的watcher先更新，因为父组件总是先被创建，子组件后被创建
+    * 2. 组件用户的watcher在其渲染watcher之前执行。
+    * 3. 如果一个组件在其父组件执行期间被销毁了，会跳过该子组件。
+    */</span>
+    queue<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span>id <span class="token operator">-</span> b<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+    <span class="token comment">// 中间略去若干代码</span>
+    <span class="token operator">...</span>
+    <span class="token comment">// 遍历  queue 中存的 所有的 watcher，执行 run 方法更新</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> index <span class="token operator">&lt;</span> queue<span class="token punctuation">.</span>length<span class="token punctuation">;</span> index<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        watcher <span class="token operator">=</span> queue<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+        watcher<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 因为 queue 是在一个闭包中，所以当遍历执行完毕了，就把 队列清空</span>
+    queue<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment">// has 是判断 当前 watcher 是否重复，作为是否把 watcher 放进 queue 的依据</span>
+    <span class="token comment">// 此时已经执行完了 queue 中的所有 watcher了，之前已经执行过的watcher 如果发生了变更，可以重新加入了</span>
+    has <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment">// waiting 是判断是否 执行 nextTick 的标识，当前的刷新队列已经执行完毕了，说以，可以设置为 false 了，执行下一轮的的添加异步事件队列的方法</span>
+    <span class="token comment">// flushing 是判断是否当前异步事件正在执行的标志，当前更新完毕，作为判断 watcher 入队的形式</span>
+    waiting <span class="token operator">=</span> flushing <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/stack/vue组件通信.html" class="prev">
+        props/$emit
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.ffeb74c7.js" defer></script><script src="/assets/js/2.8c000b42.js" defer></script><script src="/assets/js/78.d13a2495.js" defer></script>
+  </body>
+</html>
